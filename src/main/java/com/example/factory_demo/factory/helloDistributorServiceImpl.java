@@ -1,21 +1,21 @@
 package com.example.factory_demo.factory;
 
+import com.example.factory_demo.distributor.HelloDistributorService;
 import com.example.factory_demo.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.AccountException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
-public class HelloFactory implements InitializingBean {
+@Service("helloDistributorService")
+public class helloDistributorServiceImpl implements HelloDistributorService,InitializingBean {
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(helloDistributorServiceImpl.class);
 
     private static final Map<String, HelloService> accountInstance = new HashMap<String, HelloService>();
 
@@ -46,7 +46,8 @@ public class HelloFactory implements InitializingBean {
     }
 
     // 获取具体的实现类
-    public static HelloService getInstance(String tranType)  {
+    @Override
+    public HelloService getConverter(String tranType)  {
         HelloService helloService = accountInstance.get(tranType);
         if (helloService == null) {
             throw new IllegalArgumentException();

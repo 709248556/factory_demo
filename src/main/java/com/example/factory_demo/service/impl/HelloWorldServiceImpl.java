@@ -5,11 +5,10 @@ import com.example.factory_demo.service.HelloService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
 @HelloAnnotation("HELLO_WORLD")
 public class HelloWorldServiceImpl implements HelloService {
     @Override
-    public void sayHello() {
-        System.out.println("Hello World");
+    public String sayHello() {
+        return "Hello World";
     }
 }

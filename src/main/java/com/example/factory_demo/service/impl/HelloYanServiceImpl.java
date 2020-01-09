@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @HelloAnnotation("HELLO_YAN")
 public class HelloYanServiceImpl implements HelloService {
     @Override
-    public void sayHello() {
-        System.out.println("Hello Yan");
+    public String sayHello() {
+        return "Hello Yan";
     }
 }
